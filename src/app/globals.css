@@ -1,0 +1,673 @@
+
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   THEME CONFIGURATION
+   ============================================ */
+@theme inline {
+  /* Typography */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-plus-jakarta);
+
+  /* Core Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Brand Colors */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* ACS Brand Colors */
+  --color-acs-blue: var(--acs-blue);
+  --color-acs-blue-dark: var(--acs-blue-dark);
+  --color-acs-blue-light: var(--acs-blue-light);
+  --color-acs-green: var(--acs-green);
+  --color-acs-green-dark: var(--acs-green-dark);
+  --color-acs-green-light: var(--acs-green-light);
+  --color-acs-gold: var(--acs-gold);
+  --color-acs-gold-light: var(--acs-gold-light);
+
+  /* Utility Colors */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  /* Border & Input */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart Colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* ============================================
+   ROOT VARIABLES - LIGHT MODE (DEFAULT)
+   ============================================ */
+:root {
+  /* Base Radius */
+  --radius: 0.625rem;
+
+  /* ========== ACS BRAND COLORS ========== */
+  /* Primary Blue */
+  --acs-blue: oklch(0.37 0.12 255); /* #1E3A8A */
+  --acs-blue-dark: oklch(0.28 0.1 255); /* #172554 */
+  --acs-blue-light: oklch(0.55 0.2 255); /* #3B82F6 */
+
+  /* Accent Green */
+  --acs-green: oklch(0.55 0.15 160); /* #059669 */
+  --acs-green-dark: oklch(0.48 0.14 160); /* #047857 */
+  --acs-green-light: oklch(0.62 0.17 160); /* #10B981 */
+
+  /* Accent Gold */
+  --acs-gold: oklch(0.75 0.16 75); /* #F59E0B */
+  --acs-gold-light: oklch(0.82 0.17 80); /* #FBBF24 */
+
+  /* ========== SEMANTIC COLORS ========== */
+  /* Background & Foreground */
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.145 0 0); /* #111827 (gray-900) */
+
+  /* Card */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  /* Popover */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  /* Primary (Using ACS Blue) */
+  --primary: oklch(0.37 0.12 255); /* ACS Blue */
+  --primary-foreground: oklch(0.985 0 0); /* White */
+
+  /* Secondary */
+  --secondary: oklch(0.97 0 0); /* gray-50 */
+  --secondary-foreground: oklch(0.28 0.1 255); /* ACS Blue Dark */
+
+  /* Accent (Using ACS Green) */
+  --accent: oklch(0.55 0.15 160); /* ACS Green */
+  --accent-foreground: oklch(0.985 0 0); /* White */
+
+  /* Muted */
+  --muted: oklch(0.97 0 0); /* gray-50 */
+  --muted-foreground: oklch(0.556 0 0); /* gray-500 */
+
+  /* Success */
+  --success: oklch(0.55 0.15 160); /* ACS Green */
+  --success-foreground: oklch(0.985 0 0);
+
+  /* Warning */
+  --warning: oklch(0.75 0.16 75); /* ACS Gold */
+  --warning-foreground: oklch(0.145 0 0);
+
+  /* Destructive / Error */
+  --destructive: oklch(0.577 0.245 27.325); /* Red */
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Border & Input */
+  --border: oklch(0.922 0 0); /* gray-200 */
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.55 0.15 160); /* ACS Green for focus */
+
+  /* Chart Colors */
+  --chart-1: oklch(0.37 0.12 255); /* ACS Blue */
+  --chart-2: oklch(0.55 0.15 160); /* ACS Green */
+  --chart-3: oklch(0.75 0.16 75); /* ACS Gold */
+  --chart-4: oklch(0.55 0.2 255); /* ACS Blue Light */
+  --chart-5: oklch(0.62 0.17 160); /* ACS Green Light */
+
+  /* Sidebar */
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.37 0.12 255);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.28 0.1 255);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.55 0.15 160);
+
+  /* ========== GRAY SCALE (oklch) ========== */
+  --gray-50: oklch(0.985 0 0);
+  --gray-100: oklch(0.967 0 0);
+  --gray-200: oklch(0.922 0 0);
+  --gray-300: oklch(0.869 0 0);
+  --gray-400: oklch(0.708 0 0);
+  --gray-500: oklch(0.556 0 0);
+  --gray-600: oklch(0.446 0 0);
+  --gray-700: oklch(0.373 0 0);
+  --gray-800: oklch(0.269 0 0);
+  --gray-900: oklch(0.145 0 0);
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+.dark {
+  /* Background & Foreground */
+  --background: oklch(0.145 0 0); /* gray-900 */
+  --foreground: oklch(0.985 0 0); /* White */
+
+  /* Card */
+  --card: oklch(0.205 0 0); /* gray-800 */
+  --card-foreground: oklch(0.985 0 0);
+
+  /* Popover */
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  /* Primary */
+  --primary: oklch(0.55 0.2 255); /* Lighter blue for dark mode */
+  --primary-foreground: oklch(0.145 0 0);
+
+  /* Secondary */
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  /* Accent */
+  --accent: oklch(0.62 0.17 160); /* Lighter green for dark mode */
+  --accent-foreground: oklch(0.145 0 0);
+
+  /* Muted */
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  /* Success */
+  --success: oklch(0.62 0.17 160);
+  --success-foreground: oklch(0.145 0 0);
+
+  /* Warning */
+  --warning: oklch(0.82 0.17 80);
+  --warning-foreground: oklch(0.145 0 0);
+
+  /* Destructive */
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Border & Input */
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.62 0.17 160);
+
+  /* Chart Colors - Brighter for dark mode */
+  --chart-1: oklch(0.55 0.2 255);
+  --chart-2: oklch(0.62 0.17 160);
+  --chart-3: oklch(0.82 0.17 80);
+  --chart-4: oklch(0.65 0.22 255);
+  --chart-5: oklch(0.7 0.18 160);
+
+  /* Sidebar */
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.55 0.2 255);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.62 0.17 160);
+}
+
+/* ============================================
+   BASE LAYER
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  /* Typography Defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), var(--font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--foreground);
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl font-extrabold;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+  h5 {
+    @apply text-lg md:text-xl font-semibold;
+  }
+  h6 {
+    @apply text-base md:text-lg font-semibold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Focus Styles */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+/* ============================================
+   COMPONENT LAYER
+   ============================================ */
+@layer components {
+  /* ========== BUTTONS ========== */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 
+           px-6 py-3 rounded-lg font-semibold text-sm
+           transition-all duration-300 cursor-pointer
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply bg-linear-to-br from-acs-green to-acs-green-light 
+           text-white shadow-lg shadow-acs-green/35
+           hover:-translate-y-0.5 hover:shadow-xl hover:shadow-acs-green/45;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-acs-blue border-2 border-gray-200
+           hover:border-acs-blue hover:bg-gray-50;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-current
+           hover:bg-current/10;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-muted;
+  }
+
+  .btn-link {
+    @apply bg-transparent underline-offset-4 hover:underline;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  .btn-icon {
+    @apply p-2 aspect-square;
+  }
+
+  /* ========== CARDS ========== */
+  .card {
+    @apply bg-card text-card-foreground rounded-2xl 
+           border border-border shadow-md
+           transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-lg hover:border-acs-green;
+  }
+
+  .card-header {
+    @apply p-6 pb-4;
+  }
+
+  .card-content {
+    @apply p-6 pt-0;
+  }
+
+  .card-footer {
+    @apply p-6 pt-0 flex items-center;
+  }
+
+  /* ========== BADGES ========== */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 
+           rounded-full text-xs font-semibold;
+  }
+
+  .badge-primary {
+    @apply bg-acs-blue text-white;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .badge-accent {
+    @apply bg-acs-green/10 text-acs-green;
+  }
+
+  .badge-success {
+    @apply bg-success/10 text-success;
+  }
+
+  .badge-warning {
+    @apply bg-warning/10 text-warning;
+  }
+
+  .badge-destructive {
+    @apply bg-destructive/10 text-destructive;
+  }
+
+  /* ========== INPUTS ========== */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border border-input 
+           bg-background text-foreground
+           placeholder:text-muted-foreground
+           focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent
+           transition-all duration-200;
+  }
+
+  .input-error {
+    @apply border-destructive focus:ring-destructive;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-foreground mb-1.5;
+  }
+
+  /* ========== SECTION STYLES ========== */
+  .section {
+    @apply py-20 px-6;
+  }
+
+  .section-alt {
+    @apply bg-muted;
+  }
+
+  .section-dark {
+    @apply bg-linear-to-br from-acs-blue-dark to-acs-blue text-white;
+  }
+
+  .section-header {
+    @apply text-center max-w-3xl mx-auto mb-12;
+  }
+
+  .section-label {
+    @apply inline-block px-4 py-1.5 rounded-full 
+           text-xs font-semibold uppercase tracking-wide
+           bg-acs-green/10 text-acs-green mb-4;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-extrabold text-foreground mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted-foreground max-w-2xl mx-auto;
+  }
+
+  /* Dark section text */
+  .section-dark .section-title {
+    @apply text-white;
+  }
+
+  .section-dark .section-subtitle {
+    @apply text-white/80;
+  }
+
+  /* ========== CONTAINER ========== */
+  .container-acs {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-6;
+  }
+
+  .container-wide {
+    @apply max-w-screen-2xl mx-auto px-6;
+  }
+
+  /* ========== TRUST BADGES ========== */
+  .trust-badge {
+    @apply flex items-center gap-3;
+  }
+
+  .trust-badge-icon {
+    @apply w-11 h-11 rounded-lg bg-muted 
+           flex items-center justify-center text-xl;
+  }
+
+  .trust-badge-text {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .trust-badge-text strong {
+    @apply block text-foreground text-sm font-semibold;
+  }
+}
+
+/* ============================================
+   UTILITY LAYER
+   ============================================ */
+@layer utilities {
+  /* Text Colors */
+  .text-acs-blue {
+    color: var(--acs-blue);
+  }
+  .text-acs-blue-dark {
+    color: var(--acs-blue-dark);
+  }
+  .text-acs-blue-light {
+    color: var(--acs-blue-light);
+  }
+  .text-acs-green {
+    color: var(--acs-green);
+  }
+  .text-acs-green-dark {
+    color: var(--acs-green-dark);
+  }
+  .text-acs-green-light {
+    color: var(--acs-green-light);
+  }
+  .text-acs-gold {
+    color: var(--acs-gold);
+  }
+  .text-acs-gold-light {
+    color: var(--acs-gold-light);
+  }
+
+  /* Background Colors */
+  .bg-acs-blue {
+    background-color: var(--acs-blue);
+  }
+  .bg-acs-blue-dark {
+    background-color: var(--acs-blue-dark);
+  }
+  .bg-acs-blue-light {
+    background-color: var(--acs-blue-light);
+  }
+  .bg-acs-green {
+    background-color: var(--acs-green);
+  }
+  .bg-acs-green-dark {
+    background-color: var(--acs-green-dark);
+  }
+  .bg-acs-green-light {
+    background-color: var(--acs-green-light);
+  }
+  .bg-acs-gold {
+    background-color: var(--acs-gold);
+  }
+  .bg-acs-gold-light {
+    background-color: var(--acs-gold-light);
+  }
+
+  /* Gradient Backgrounds */
+  .bg-gradient-acs-blue {
+    background: linear-gradient(135deg, var(--acs-blue-dark), var(--acs-blue));
+  }
+
+  .bg-gradient-acs-green {
+    background: linear-gradient(
+      135deg,
+      var(--acs-green),
+      var(--acs-green-light)
+    );
+  }
+
+  .bg-gradient-acs-hero {
+    background: linear-gradient(
+      180deg,
+      oklch(0.97 0.01 250) 0%,
+      var(--background) 100%
+    );
+  }
+
+  /* Border Colors */
+  .border-acs-blue {
+    border-color: var(--acs-blue);
+  }
+  .border-acs-green {
+    border-color: var(--acs-green);
+  }
+  .border-acs-gold {
+    border-color: var(--acs-gold);
+  }
+
+  /* Ring Colors */
+  .ring-acs-green {
+    --tw-ring-color: var(--acs-green);
+  }
+  .ring-acs-blue {
+    --tw-ring-color: var(--acs-blue);
+  }
+
+  /* Shadow Utilities */
+  .shadow-acs-green {
+    box-shadow: 0 4px 14px oklch(0.55 0.15 160 / 0.35);
+  }
+
+  .shadow-acs-blue {
+    box-shadow: 0 4px 14px oklch(0.37 0.12 255 / 0.35);
+  }
+
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Hover Lift Effect */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  /* Text Balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* No Scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
