@@ -1,26 +1,27 @@
 "use client";
 
-import React from "react";
+import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import {
-  FaShieldAlt,
-  FaTrophy,
-  FaHome,
-  FaCar,
-  FaCreditCard,
+  FaBalanceScale,
+  FaBookOpen,
   FaBriefcase,
-  FaKey,
-  FaUserShield,
+  FaCar,
+  FaChartLine,
+  FaCreditCard,
+  FaEnvelope,
   FaFileAlt,
   FaFileContract,
   FaHeartBroken,
-  FaBookOpen,
-  FaChartLine,
-  FaMoneyBillWave,
-  FaBalanceScale,
-  FaPhone,
-  FaEnvelope,
+  FaHome,
+  FaKey,
   FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaPhone,
+  FaShieldAlt,
+  FaTrophy,
+  FaUserShield,
 } from "react-icons/fa";
 
 // ============================================
@@ -48,8 +49,16 @@ const CTA = {
 };
 
 const TRUST_BADGES = [
-  { icon: <FaShieldAlt className="text-emerald-400" />, title: "ASIC Licensed", subtitle: "ACL 532003" },
-  { icon: <FaTrophy className="text-yellow-400" />, title: "Award Winner", subtitle: "2022 • 2023 • 2024" },
+  {
+    icon: <FaShieldAlt className="text-emerald-400" />,
+    title: "ASIC Licensed",
+    subtitle: "ACL 532003",
+  },
+  {
+    icon: <FaTrophy className="text-yellow-400" />,
+    title: "Award Winner",
+    subtitle: "2022 • 2023 • 2024",
+  },
 ];
 
 const SOCIAL_LINKS = [
@@ -115,8 +124,16 @@ const FOOTER_COLUMNS = [
       {
         title: "By Loan Type",
         links: [
-          { text: "Home Loans", href: "/credit-repair-for-home-loan", icon: <FaHome className="text-emerald-400" /> },
-          { text: "Car Loans", href: "/credit-repair-for-car-loan", icon: <FaCar className="text-emerald-400" /> },
+          {
+            text: "Home Loans",
+            href: "/credit-repair-for-home-loan",
+            icon: <FaHome className="text-emerald-400" />,
+          },
+          {
+            text: "Car Loans",
+            href: "/credit-repair-for-car-loan",
+            icon: <FaCar className="text-emerald-400" />,
+          },
           {
             text: "Personal Loans",
             href: "/credit-repair-for-personal-loan",
@@ -152,7 +169,11 @@ const FOOTER_COLUMNS = [
             href: "/credit-repair-after-debt-agreement",
             icon: <FaFileContract className="text-emerald-400" />,
           },
-          { text: "After Divorce", href: "/credit-repair-after-divorce", icon: <FaHeartBroken className="text-emerald-400" /> },
+          {
+            text: "After Divorce",
+            href: "/credit-repair-after-divorce",
+            icon: <FaHeartBroken className="text-emerald-400" />,
+          },
         ],
       },
     ],
@@ -195,10 +216,26 @@ const FOOTER_COLUMNS = [
       {
         title: "Education Hub",
         links: [
-          { text: "Credit Basics & Guides", href: "/credit-basics-guides", icon: <FaBookOpen className="text-emerald-400" /> },
-          { text: "Improving Credit", href: "/improving-credit", icon: <FaChartLine className="text-emerald-400" /> },
-          { text: "Bad Credit Loans", href: "/bad-credit-loans", icon: <FaMoneyBillWave className="text-emerald-400" /> },
-          { text: "Legal & Debt Issues", href: "/legal-debt-issues", icon: <FaBalanceScale className="text-emerald-400" /> },
+          {
+            text: "Credit Basics & Guides",
+            href: "/credit-basics-guides",
+            icon: <FaBookOpen className="text-emerald-400" />,
+          },
+          {
+            text: "Improving Credit",
+            href: "/improving-credit",
+            icon: <FaChartLine className="text-emerald-400" />,
+          },
+          {
+            text: "Bad Credit Loans",
+            href: "/bad-credit-loans",
+            icon: <FaMoneyBillWave className="text-emerald-400" />,
+          },
+          {
+            text: "Legal & Debt Issues",
+            href: "/legal-debt-issues",
+            icon: <FaBalanceScale className="text-emerald-400" />,
+          },
           { text: "Your Legal Rights", href: "/your-legal-rights" },
           { text: "Case Studies", href: "/case-studies" },
           { text: "FAQs", href: "/faqs" },
@@ -256,9 +293,14 @@ const SocialIcon = ({ type }: { type: string }) => {
 // FOOTER COMPONENT
 // ============================================
 
+const lastUpdated = new Date().toLocaleString("en-AU", {
+  month: "long",
+  year: "numeric",
+});
+
 const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-300">
+    <footer className="bg-linear-to-b from-slate-900 to-slate-800 text-gray-300">
       {/* CTA Strip */}
       <div className="bg-linear-to-r from-blue-900 to-emerald-800">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -284,29 +326,23 @@ const Footer = () => {
       </div>
 
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-7xl mx-auto px-6 pt-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {/* Brand Column */}
           <div className="col-span-2">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-800 to-emerald-600 flex items-center justify-center text-white font-bold text-xs">
-                ACS
-              </div>
-              <div>
-                <div className="text-slate-200 font-bold text-sm">
-                  Australian
-                </div>
-                <div className="text-emerald-400 font-bold text-sm">
-                  Credit Solutions
-                </div>
-              </div>
-            </div>
-            <p className="text-slate-400 text-xs leading-relaxed mb-4">
+            <Image
+              src="/logo.png"
+              alt="Australian Credit Solutions"
+              width={250}
+              height={80}
+              className="mb-4"
+            />
+            <p className="text-sm text-gray-400 leading-relaxed mb-5">
               {COMPANY_INFO.tagline}
             </p>
 
             {/* Contact */}
-            <div className="space-y-1.5 mb-4 text-xs">
+            <div className="space-y-1.5 mb-4 text-sm">
               <a
                 href={`tel:${COMPANY_INFO.primaryPhone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold"
@@ -317,7 +353,8 @@ const Footer = () => {
                 href={`tel:${COMPANY_INFO.secondaryPhone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 hover:text-white"
               >
-                <FaPhone className="text-slate-500" /> {COMPANY_INFO.secondaryPhone}
+                <FaPhone className="text-slate-500" />{" "}
+                {COMPANY_INFO.secondaryPhone}
               </a>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
@@ -326,7 +363,8 @@ const Footer = () => {
                 <FaEnvelope className="text-slate-500" /> {COMPANY_INFO.email}
               </a>
               <div className="flex items-center gap-2">
-                <FaMapMarkerAlt className="text-slate-500" /> {COMPANY_INFO.address}
+                <FaMapMarkerAlt className="text-slate-500" />{" "}
+                {COMPANY_INFO.address}
               </div>
             </div>
 
@@ -338,7 +376,7 @@ const Footer = () => {
                   className="flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-lg"
                 >
                   <span className="text-lg">{badge.icon}</span>
-                  <div className="text-xs">
+                  <div className="text-sm">
                     <div className="font-semibold text-white">
                       {badge.title}
                     </div>
@@ -368,7 +406,7 @@ const Footer = () => {
             <div key={colIdx} className="space-y-4">
               {column.sections.map((section, secIdx) => (
                 <div key={secIdx}>
-                  <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-2">
+                  <h4 className="text-white text-xs font-bold uppercase tracking-wide border-b-2 border-emerald-500 inline-block pb-2 mb-4">
                     {section.title}
                   </h4>
                   {"isGrid" in section && section.isGrid ? (
@@ -377,7 +415,7 @@ const Footer = () => {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="text-xs bg-slate-800 hover:bg-emerald-600 px-2 py-1 rounded text-center transition-colors"
+                          className="text-sm bg-slate-800 hover:bg-emerald-600 px-2 py-1 rounded text-center transition-colors"
                         >
                           {link.text}
                         </Link>
@@ -389,13 +427,15 @@ const Footer = () => {
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className={`text-xs hover:text-emerald-400 transition-colors flex items-center gap-1.5 ${
+                            className={`text-sm hover:text-emerald-400 transition-colors flex items-center gap-1.5 ${
                               "highlight" in link && link.highlight
                                 ? "text-emerald-400 font-semibold"
                                 : ""
                             }`}
                           >
-                            {"icon" in link && link.icon && <span className="text-[10px]">{link.icon}</span>}
+                            {"icon" in link && link.icon && (
+                              <span className="text-[10px]">{link.icon}</span>
+                            )}
                             {link.text}
                           </Link>
                         </li>
@@ -412,27 +452,33 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
             <div className="text-center md:text-left">
               <div className="text-slate-400">
                 © {new Date().getFullYear()} {COMPANY_INFO.name} Pty Ltd. All
                 rights reserved. {COMPANY_INFO.abn}
               </div>
-              <div className="text-slate-500 text-[10px] mt-1">
+              <div className="text-slate-500 text-[11px] mt-1">
                 ASIC licensed credit repair service ({COMPANY_INFO.acl}).
                 Results vary. Past results do not guarantee future outcomes.
               </div>
             </div>
-            <div className="flex flex-wrap justify-center gap-3">
-              {LEGAL_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-white transition-colors"
-                >
-                  {link.text}
-                </Link>
-              ))}
+            <div className="flex flex-col items-center md:items-end space-y-2">
+              <div className="flex flex-wrap justify-center md:justify-end gap-4">
+                {LEGAL_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="hover:text-emerald-400 transition"
+                  >
+                    {link.text}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="text-[11px] text-gray-500 bg-white/5 px-2.5 py-1 rounded">
+                Last Updated: {lastUpdated}
+              </div>
             </div>
           </div>
         </div>
