@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer";
 import { geistMono, geistSans, plusJakarta } from "../Font/font";
 import "./globals.css";
+import TopBar from "@/components/TopBar";
+import Navbar from "@/components/Navbar";
 
 export default function RootLayout({
   children,
@@ -13,6 +15,8 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="font-sans antialiased">
+        <TopBar/>
+        <Navbar/>
         <main>{children}</main>
         <Footer />
       </body>

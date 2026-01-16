@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {
+  FaArrowLeft,
+  FaArrowRight,
   FaBalanceScale,
   FaBookOpen,
   FaBriefcase,
@@ -44,7 +46,7 @@ const CTA = {
   heading: "Ready to Fix Your Credit?",
   subheading:
     "Get a free assessment from Melbourne's leading credit repair specialists",
-  primaryButton: { text: "Free Assessment →", href: "#free-assessment" },
+  primaryButton: { text: "Free Assessment", href: "#free-assessment" },
   secondaryButton: { text: "0489 265 737", href: "tel:0489265737" },
 };
 
@@ -199,9 +201,10 @@ const FOOTER_COLUMNS = [
         links: [
           { text: "Sydney", href: "/credit-repair-sydney" },
           {
-            text: "Melbourne ←",
+            text: "Melbourne",
             href: "/credit-repair-melbourne",
             highlight: true,
+            hasArrow: true,
           },
           { text: "Brisbane", href: "/credit-repair-brisbane" },
           { text: "Perth", href: "/credit-repair-perth" },
@@ -303,21 +306,23 @@ const Footer = () => {
     <footer className="bg-linear-to-b from-slate-900 to-slate-800 text-gray-300">
       {/* CTA Strip */}
       <div className="bg-linear-to-r from-blue-900 to-emerald-800">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h3 className="text-white font-bold text-lg">{CTA.heading}</h3>
-            <p className="text-blue-100 text-sm">{CTA.subheading}</p>
+            <h3 className="text-white font-bold text-base sm:text-lg">
+              {CTA.heading}
+            </h3>
+            <p className="text-blue-100 text-xs sm:text-sm">{CTA.subheading}</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
             <Link
               href={CTA.primaryButton.href}
-              className="bg-emerald-500 hover:bg-emerald-400 text-white px-5 py-2 rounded-lg font-semibold text-sm transition-colors"
+              className="bg-emerald-500 hover:bg-emerald-400 text-white px-4 sm:px-5 py-2 rounded-lg font-semibold text-sm transition-colors text-center inline-flex items-center justify-center gap-1"
             >
-              {CTA.primaryButton.text}
+              {CTA.primaryButton.text} <FaArrowRight />
             </Link>
             <a
               href={CTA.secondaryButton.href}
-              className="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2"
+              className="bg-white/10 hover:bg-white/20 text-white px-4 sm:px-5 py-2 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2"
             >
               <FaPhone className="text-sm" /> {CTA.secondaryButton.text}
             </a>
@@ -326,8 +331,8 @@ const Footer = () => {
       </div>
 
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 pt-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-8">
           {/* Brand Column */}
           <div className="col-span-2">
             <Image
@@ -335,14 +340,14 @@ const Footer = () => {
               alt="Australian Credit Solutions"
               width={250}
               height={80}
-              className="mb-4"
+              className="mb-4 w-48 sm:w-auto max-w-62.5"
             />
-            <p className="text-sm text-gray-400 leading-relaxed mb-5">
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-5">
               {COMPANY_INFO.tagline}
             </p>
 
             {/* Contact */}
-            <div className="space-y-1.5 mb-4 text-sm">
+            <div className="space-y-1.5 mb-4 text-xs sm:text-sm">
               <a
                 href={`tel:${COMPANY_INFO.primaryPhone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold"
@@ -358,29 +363,32 @@ const Footer = () => {
               </a>
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
-                className="flex items-center gap-2 hover:text-white break-all"
+                className="flex items-center gap-2 hover:text-white break-all text-[11px] sm:text-sm"
               >
-                <FaEnvelope className="text-slate-500" /> {COMPANY_INFO.email}
+                <FaEnvelope className="text-slate-500 shrink-0" />{" "}
+                {COMPANY_INFO.email}
               </a>
-              <div className="flex items-center gap-2">
-                <FaMapMarkerAlt className="text-slate-500" />{" "}
+              <div className="flex items-center gap-2 text-[11px] sm:text-sm">
+                <FaMapMarkerAlt className="text-slate-500 shrink-0" />{" "}
                 {COMPANY_INFO.address}
               </div>
             </div>
 
             {/* Trust Badges */}
-            <div className="flex gap-3 mb-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
               {TRUST_BADGES.map((badge, i) => (
                 <div
                   key={i}
                   className="flex items-center gap-2 bg-slate-800 px-3 py-2 rounded-lg"
                 >
-                  <span className="text-lg">{badge.icon}</span>
-                  <div className="text-sm">
+                  <span className="text-base sm:text-lg">{badge.icon}</span>
+                  <div className="text-xs sm:text-sm">
                     <div className="font-semibold text-white">
                       {badge.title}
                     </div>
-                    <div className="text-slate-400">{badge.subtitle}</div>
+                    <div className="text-slate-400 text-[10px] sm:text-xs">
+                      {badge.subtitle}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -406,7 +414,7 @@ const Footer = () => {
             <div key={colIdx} className="space-y-4">
               {column.sections.map((section, secIdx) => (
                 <div key={secIdx}>
-                  <h4 className="text-white text-xs font-bold uppercase tracking-wide border-b-2 border-emerald-500 inline-block pb-2 mb-4">
+                  <h4 className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-wide border-b-2 border-emerald-500 inline-block pb-2 mb-3 sm:mb-4">
                     {section.title}
                   </h4>
                   {"isGrid" in section && section.isGrid ? (
@@ -415,24 +423,27 @@ const Footer = () => {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="text-sm bg-slate-800 hover:bg-emerald-600 px-2 py-1 rounded text-center transition-colors"
+                          className="text-[10px] sm:text-sm bg-slate-800 hover:bg-emerald-600 px-1.5 sm:px-2 py-1 rounded text-center transition-colors"
                         >
                           {link.text}
                         </Link>
                       ))}
                     </div>
                   ) : (
-                    <ul className="space-y-1">
+                    <ul className="space-y-0.5 sm:space-y-1">
                       {section.links.map((link) => (
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className={`text-sm hover:text-emerald-400 transition-colors flex items-center gap-1.5 ${
+                            className={`text-[11px] sm:text-sm hover:text-emerald-400 transition-colors flex items-center gap-1.5 ${
                               "highlight" in link && link.highlight
                                 ? "text-emerald-400 font-semibold"
                                 : ""
                             }`}
                           >
+                            {"hasArrow" in link && link.hasArrow && (
+                              <FaArrowLeft className="text-[10px]" />
+                            )}
                             {"icon" in link && link.icon && (
                               <span className="text-[10px]">{link.icon}</span>
                             )}
@@ -450,33 +461,33 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800">
+      <div className="border-t border-slate-800 mt-8 sm:mt-12">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] sm:text-sm">
             <div className="text-center md:text-left">
               <div className="text-slate-400">
                 © {new Date().getFullYear()} {COMPANY_INFO.name} Pty Ltd. All
                 rights reserved. {COMPANY_INFO.abn}
               </div>
-              <div className="text-slate-500 text-[11px] mt-1">
+              <div className="text-slate-500 text-[9px] sm:text-[11px] mt-1">
                 ASIC licensed credit repair service ({COMPANY_INFO.acl}).
                 Results vary. Past results do not guarantee future outcomes.
               </div>
             </div>
             <div className="flex flex-col items-center md:items-end space-y-2">
-              <div className="flex flex-wrap justify-center md:justify-end gap-4">
+              <div className="flex flex-wrap justify-center md:justify-end gap-2 sm:gap-4">
                 {LEGAL_LINKS.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="hover:text-emerald-400 transition"
+                    className="hover:text-emerald-400 transition text-[10px] sm:text-sm"
                   >
                     {link.text}
                   </Link>
                 ))}
               </div>
 
-              <div className="text-[11px] text-gray-500 bg-white/5 px-2.5 py-1 rounded">
+              <div className="text-[9px] sm:text-[11px] text-gray-500 bg-white/5 px-2 sm:px-2.5 py-1 rounded">
                 Last Updated: {lastUpdated}
               </div>
             </div>
