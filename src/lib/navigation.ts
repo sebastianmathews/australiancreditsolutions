@@ -189,9 +189,9 @@ export const aboutMenu = [
 ];
 
 export const educationFooterLinks = [
-  { label: '📊 Case Studies', href: '/case-studies' },
-  { label: '❓ FAQs', href: '/faqs' },
-  { label: '📝 Blog', href: '/blog' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'FAQs', href: '/faqs' },
+  { label: 'Blog', href: '/blog' },
 ];
 
 export const mainNav = [
