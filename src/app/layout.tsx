@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import { geistMono, geistSans, plusJakarta } from "../Font/font";
 import "./globals.css";
 
@@ -13,6 +14,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
